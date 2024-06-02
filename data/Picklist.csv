@@ -1,0 +1,64 @@
+Name,Recordtype__c,SubType__c,Tool__c,Type__c
+1,Service,Power Plant,Problem,Energy
+2,Service,Power Plant,Problem,Water
+3,Service,Power Plant,Problem,Other
+4,Service,Power Plant,Team,More
+5,Service,Power Plant,Team,Less
+6,Service,Power Plant,Team,Many
+7,Service,Plant,Schema,External
+8,Service,Plant,Schema,Internal
+9,Service,Plant,Enable,
+10,Service,Plant,Problem,Outside
+11,Service,Engine Plant,Engine Structure,External
+12,Service,Engine Plant,Engine Structure,Internal
+13,Service,Engine Plant,Engines,Gear
+14,Service,Engine Plant,Engines,Materials
+15,Service,Engine Plant,Engines,Dust
+16,Service,Question,Engine Plant,Materials
+17,Service,Question,Engine Plant,Gears
+18,Service,Question,Plant,Other
+19,Service,Question,Power Plant,Other
+20,BackOffice,Engine Plant,Problem,Gears
+21,BackOffice,Engine Plant,Installation,Materials
+22,BackOffice,Engine Plant,Installation,Dust
+23,BackOffice,Engine Plant,Installation,Other
+24,BackOffice,Engine Plant,Remove,Gears
+25,BackOffice,Engine Plant,Remove,Materials
+26,BackOffice,Engine Plant,Remove,Dust
+27,BackOffice,Engine Plant,Remove,Other
+28,BackOffice,Engine Plant,Reinstallation,Gears
+29,BackOffice,Engine Plant,Reinstallation,Materials
+30,BackOffice,Engine Plant,Reinstallation,Dust
+31,BackOffice,Engine Plant,Reinstallation,Other
+32,BackOffice,Energy,Installation,Inside
+33,BackOffice,Energy,Installation,Outside
+34,BackOffice,Energy,Enable,
+35,BackOffice,Energy,Enable,
+36,BackOffice,Energy,Disable,
+37,BackOffice,Energy,Disable,
+38,BackOffice,Energy,Connection,Outside
+39,Support,Payment,Confirmation,
+40,Support,Payment,Question,Credit
+41,Support,Payment,Irregular,Value
+42,Support,Payment,Error,Value
+43,Support,Payment,Disconnected,Widgets
+44,Support,Payment,Closed,Widgets
+45,Support,Payment,Open,Value
+46,Support,Credit,Received,Value
+47,Support,Credit,Received,More
+48,Support,Credit,Irregular,Less
+49,Support,Credit,Denied,Value
+50,Support,Credit,Irregular,Value
+51,Support,Credit,Decrease,Value
+52,Support,Credit,Forgot,Password
+53,Support,Credit,Cancel,Card
+54,Support,Installation,Plant,Water
+55,Support,Installation,Plant,Energy
+56,Support,Installation,Plant,Structure
+57,Support,Installation,Engine Plant,Gears
+58,Support,Installation,Irregular,Materials
+59,Support,Installation,Irregular,Dust
+60,Support,Installation,Engine Plant,Base Structure
+61,Support,Installation,Energy,Engine Plant
+62,Support,Installation,Energy,Power Plant
+63,Support,Installation,Energy,Plant

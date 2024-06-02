@@ -1,0 +1,61 @@
+<template>
+
+ <lightning-card>
+  <h3 slot="title">
+    <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+    Dependency Picklist Component
+  </h3>
+  <div class="slds-grid slds-grid_vertical container">
+    <div class="slds-col slds-size_10-of-12">
+      <lightning-combobox
+      name="Recordtype"
+      label="Recordtype"
+      placeholder="Selecione o Recordtype"
+      options={recordtypePicklist}
+      onchange={handleRecordTypeChange}
+      value={recordtypeValueSelected} ></lightning-combobox>
+    </div>
+    <div class="slds-col slds-size_10-of-12">
+      <lightning-combobox
+      name="SubType"
+      label="SubType"
+      placeholder="Selecione o Subtype"
+      options={subtypePicklist}
+      onchange={handleSubTypeChange}
+      disabled={subtypeDisabled}
+      value={subtypeValueSelected}></lightning-combobox>
+    </div>
+    <div class="slds-col slds-size_10-of-12">
+      <lightning-combobox
+      name="Tool"
+      label="Tool"
+      placeholder="Selecione a Tool"
+      options={toolPicklist}
+      disabled={toolDisabled}
+      onchange={handleToolChange}
+      value={toolPicklistValueSelected}></lightning-combobox>
+    </div>
+    <div class="slds-col slds-size_10-of-12">
+      <lightning-combobox
+      name="Type"
+      label="Type"
+      placeholder="Selecione o Type"
+      options={typePicklist}
+      disabled={typeDisabled}
+      onchange={handleTypeChange}></lightning-combobox>
+    </div>
+  </div>
+  <div slot="footer">
+    <lightning-button-group>
+      <lightning-button label="Refresh" onclick={handleReset} variant="destructive" icon-name="utility:refresh"></lightning-button>
+      <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save"></lightning-button>
+    </lightning-button-group>
+  </div>
+  <div class="slds-align_absolute-center">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" size="medium" variant="brand" class="slds-is-relative"></lightning-spinner>
+    </template>
+  </div>
+</lightning-card> 
+
+</template>
