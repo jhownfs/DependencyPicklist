@@ -11,6 +11,7 @@ You can modify and adjust according your needs.
 
 ## Next Updates
 
+[] Add prints in readME to explain more about component works
 [] Apply Some Design pattern to standarize
 [] Dynamic picklist values and dependency
 
