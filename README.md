@@ -1,18 +1,20 @@
 # Dependency Picklist
 
-This component can be used to do Dependency Picklist from custom metadata.
+This component can be used to do a Dependency Picklist from custom metadata.
 
 
 ## USE CASE
 
-Sometimes we need customize standard dependency picklist Salesforce to using a custom logic for some reasons, standard picklist values limit, standard dependency limit or more..So I created this component to solve this problem, using custom LWC and Custom metadata.
+Sometimes we need to customize standard dependency picklist Salesforce to use custom logic for some reasons, standard picklist values limit, standard dependency limit, or more...So I created this component to solve this problem, using custom LWC and Custom metadata.
 
-You can modify and adjust according your needs.
+You can modify and adjust according to your needs.
 
 ## Next Updates
 
 [] Add prints in readME to explain more about component works
-[] Apply Some Design pattern to standarize
+
+[] Apply Some Design patterns to standardized
+
 [] Dynamic picklist values and dependency
 
 ## Find some bug or want help, please open a PR
