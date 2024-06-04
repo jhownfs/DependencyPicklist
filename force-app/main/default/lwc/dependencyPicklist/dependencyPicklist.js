@@ -1,8 +1,7 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import getPicklistValues from '@salesforce/apex/DependencyPicklistController.getPicklistValues';
-import saveRecord from '@salesforce/apex/DependencyPicklistController.saveRecord';
+import { updateRecord } from "lightning/uiRecordApi";
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
-import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
 
 export default class DependencyPicklist extends LightningElement {
 
@@ -91,7 +90,6 @@ export default class DependencyPicklist extends LightningElement {
   handleRecordTypeChange(event){
     this.recordtypeValueSelected = event.detail.value;
     let listAux = this.mapRecordtypePicklist.get(this.recordtypeValueSelected);
-
     this.subtypePicklist = this.removeDuplicates(listAux);
     this.toolPicklist = [];
     this.typePicklist = [];
@@ -104,7 +102,6 @@ export default class DependencyPicklist extends LightningElement {
     let key = this.recordtypeValueSelected + '-'+event.detail.value;
     this.subtypeValueSelected = event.detail.value;
     let listAux = this.mapSubtypePicklist.get(key);
-
     this.toolPicklist = this.removeDuplicates(listAux);
     this.toolDisabled = false;
     this.typeDisabled = true;
@@ -114,7 +111,6 @@ export default class DependencyPicklist extends LightningElement {
     let key = this.recordtypeValueSelected + '-'+ this.subtypeValueSelected + '-'+ event.detail.value;
     this.toolPicklistValueSelected = event.detail.value;
     let listAux = this.mapToolPicklist.get(key);
-
     this.typePicklist = this.removeDuplicates(listAux);
     this.typeDisabled = false;
   }
@@ -125,21 +121,24 @@ export default class DependencyPicklist extends LightningElement {
 
   handleSave(){
     this.isLoading = true;
-    let picklistValues = {
-      recordtype: this.recordtypeValueSelected,
-      subtype: this.subtypeValueSelected,
-      tool: this.toolPicklistValueSelected,
-      type: this.typePicklistValueSelected
+
+    const picklistValues = {
+      fields: {
+      Id: this.recordId,
+      Recordtype__c: this.recordtypeValueSelected,
+      SubType__c: this.subtypeValueSelected,
+      Tool__c: this.toolPicklistValueSelected,
+      Type__c: this.typePicklistValueSelected
+      }
     }
 
-    saveRecord({ recordId: this.recordId, wrapperValues: JSON.stringify(picklistValues)})
-    .then(data => {
+    updateRecord(picklistValues)
+    .then(() => {
       this.showAlertToast('Record Update', 'Record has been updated!', 'success');
-      this.handler();
       this.isLoading = false;
-    }).catch(error => {
+    }).catch((error) => {
       console.log('error = '+ error);
-      this.showAlertToast('Error', error, 'error');
+      this.showAlertToast('Error', JSON.stringify(error), 'error');
       this.isLoading = false;
     });
   }
@@ -148,11 +147,13 @@ export default class DependencyPicklist extends LightningElement {
     this.subtypePicklist = [];
     this.toolPicklist = [];
     this.typePicklist = [];
-
+    this.recordtypeValueSelected = '';
+    this.subtypeValueSelected = '';
+    this.toolPicklistValueSelected = '';
+    this.typePicklistValueSelected = '';
     this.toolDisabled = true;
     this.typeDisabled = true;
   }
-
 
   showAlertToast(title, message, type){
     
@@ -165,9 +166,5 @@ export default class DependencyPicklist extends LightningElement {
 
     this.dispatchEvent(event);
 
-  }
-
-  async handler() {
-    await notifyRecordUpdateAvailable([{recordId: this.recordId}]);
   }
 }
