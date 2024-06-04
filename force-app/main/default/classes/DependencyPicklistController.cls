@@ -7,8 +7,8 @@ public with sharing class DependencyPicklistController {
     list<DependencyPicklist__mdt> lstDp = new list<DependencyPicklist__mdt>();
     
     try {
-        
-      lstDp = [SELECT id, Recordtype__c, SubType__c, Tool__c, Type__c FROM DependencyPicklist__mdt];
+      
+      lstDp = DependencyPicklistSelector.getDependecyPicklistAllValues();
    
     } catch (Exception e) {
         throw new AuraHandledException(JSON.serialize(e.getMessage()));

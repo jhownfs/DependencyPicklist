@@ -1,11 +1,11 @@
 <template>
-
  <lightning-card>
   <h3 slot="title">
     <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
     Dependency Picklist Component
   </h3>
   <div class="slds-grid slds-grid_vertical container">
+    <template if:false={isLoading}>
     <div class="slds-col slds-size_10-of-12">
       <lightning-combobox
       name="Recordtype"
@@ -44,6 +44,7 @@
       disabled={typeDisabled}
       onchange={handleTypeChange}></lightning-combobox>
     </div>
+  </template>
   </div>
   <div slot="footer">
     <lightning-button-group>
@@ -51,11 +52,11 @@
       <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save"></lightning-button>
     </lightning-button-group>
   </div>
-  <div class="slds-align_absolute-center">
-    <template if:true={isLoading}>
-      <lightning-spinner alternative-text="Loading" size="medium" variant="brand" class="slds-is-relative"></lightning-spinner>
-    </template>
+<template if:true={isLoading}>
+  <div class=" slds-align_absolute-center">
+    <lightning-spinner alternative-text="Loading" size="medium" variant="brand" class="slds-is-relative"></lightning-spinner>
   </div>
+</template>
 </lightning-card> 
 
 </template>
