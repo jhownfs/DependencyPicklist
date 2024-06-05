@@ -7,10 +7,10 @@ export default class DependencyPicklist extends LightningElement {
 
   @api recordId;
 
-  recordtypeValueSelected;
-  subtypeValueSelected;
-  toolPicklistValueSelected;
-  typePicklistValueSelected;
+  recordtypeValueSelected = '';
+  subtypeValueSelected = '';
+  toolPicklistValueSelected = '';
+  typePicklistValueSelected = '';
 
   mapRecordtypePicklist = new Map();
   mapSubtypePicklist = new Map();
@@ -24,6 +24,7 @@ export default class DependencyPicklist extends LightningElement {
   @track toolPicklist = [];
   @track typePicklist = [];
   @track isLoading = false;
+
   connectedCallback(){
     this.subtypeDisabled = true;
     this.toolDisabled = true;
@@ -93,14 +94,17 @@ export default class DependencyPicklist extends LightningElement {
     this.subtypePicklist = this.removeDuplicates(listAux);
     this.toolPicklist = [];
     this.typePicklist = [];
+    this.subtypeValueSelected = this.clearField();
     this.subtypeDisabled = false;
     this.toolDisabled = true;
     this.typeDisabled = true;
   }
 
   handleSubTypeChange(event){
-    let key = this.recordtypeValueSelected + '-'+event.detail.value;
+    let key = this.recordtypeValueSelected + '-'+ event.detail.value;
     this.subtypeValueSelected = event.detail.value;
+    this.toolPicklistValueSelected = this.clearField();
+    
     let listAux = this.mapSubtypePicklist.get(key);
     this.toolPicklist = this.removeDuplicates(listAux);
     this.toolDisabled = false;
@@ -110,7 +114,9 @@ export default class DependencyPicklist extends LightningElement {
   handleToolChange(event){
     let key = this.recordtypeValueSelected + '-'+ this.subtypeValueSelected + '-'+ event.detail.value;
     this.toolPicklistValueSelected = event.detail.value;
+
     let listAux = this.mapToolPicklist.get(key);
+    this.typePicklistValueSelected = this.clearField();
     this.typePicklist = this.removeDuplicates(listAux);
     this.typeDisabled = false;
   }
@@ -119,8 +125,16 @@ export default class DependencyPicklist extends LightningElement {
     this.typePicklistValueSelected = event.detail.value;
   }
 
-  handleSave(){
+  handleSave(event){
+    event.preventDefault();
     this.isLoading = true;
+    let validate = this.ValidateFields();
+
+    if(validate){
+      this.showAlertToast('Empty Field', 'Please fill all the required fields', 'warning')
+      this.isLoading = false;
+      return;
+    }    
 
     const picklistValues = {
       fields: {
@@ -143,7 +157,11 @@ export default class DependencyPicklist extends LightningElement {
     });
   }
 
-  handleReset(){
+  clearField(){
+    return '';
+  }
+
+  resetFields(){
     this.subtypePicklist = [];
     this.toolPicklist = [];
     this.typePicklist = [];
@@ -151,6 +169,10 @@ export default class DependencyPicklist extends LightningElement {
     this.subtypeValueSelected = '';
     this.toolPicklistValueSelected = '';
     this.typePicklistValueSelected = '';
+    this.disableToolAndType();
+  }
+
+  disableToolAndType(){
     this.toolDisabled = true;
     this.typeDisabled = true;
   }
@@ -166,5 +188,9 @@ export default class DependencyPicklist extends LightningElement {
 
     this.dispatchEvent(event);
 
+  }
+
+  ValidateFields(){
+    return (this.recordtypeValueSelected === '' || this.subtypeValueSelected === '' || this.toolPicklistValueSelected === '' || this.typePicklistValueSelected === '');
   }
 }

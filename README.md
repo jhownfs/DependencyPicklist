@@ -13,7 +13,7 @@ You can modify and adjust according to your needs.
 
 [] Add prints in readME to explain more about component works
 
-[] Apply Some Design patterns to standardized
+[] Apply Some Design patterns to standardized to back and front (We have code smells here)
 
 [] Dynamic picklist values and dependency
 
