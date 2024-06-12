@@ -2,9 +2,9 @@ import { LightningElement, track, wire, api } from 'lwc';
 import getPicklistValues from '@salesforce/apex/DependencyPicklistController.getPicklistValues';
 import { updateRecord } from "lightning/uiRecordApi";
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
-import headerComponentLabel from '@salesforce/label/c.Dependency_Picklist_Component';
-import saveLabel from '@salesforce/label/c.Save';
-import resetLabel from '@salesforce/label/c.Reset';
+import headerComponentLabel from '@salesforce/label/c.DPC_header';
+import saveLabel from '@salesforce/label/c.DPC_BTNSave';
+import resetLabel from '@salesforce/label/c.DPC_BTNReset';
 
 export default class DependencyPicklist extends LightningElement {
 
