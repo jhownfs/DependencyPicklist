@@ -1,7 +1,36 @@
-# Dependency Picklist
+# Dependency Picklist ![image](https://img.shields.io/badge/Salesforce-00A1E0?style=for-the-badge&logo=Salesforce&logoColor=white)
+
 
 This component can be used to do a Dependency Picklist from custom metadata.
 
+## 💻 How I to use?
+
+If you can you this component, clone this repository and push using SFDX to your org, follow instructions:
+
+1. Clone this repository:
+
+```
+git clone https://github.com/jhownfs/DependencyPicklist.git
+cd DependencyPicklist
+```
+
+2. Authorize with your org and provide it with an alias (OrgAlias):
+
+```
+sfdx force:auth:web:login -a "OrgAlias"
+```
+
+3. Push the app to your org:
+
+```
+sfdx force:source:deploy --sourcepath force-app/main/default --json --loglevel fatal --targetusername "OrgAlias"
+```
+
+4. Open the default org:
+
+```
+sfdx force:org:open --targetusername "OrgAlias"
+```
 
 ## USE CASE
 
@@ -9,7 +38,7 @@ Sometimes we need to customize standard dependency picklist Salesforce to use cu
 
 You can modify and adjust according to your needs.
 
-## Next Updates
+## Next Updates 🚀
 
 [] Add prints in readME to explain more about component works
 
@@ -17,4 +46,10 @@ You can modify and adjust according to your needs.
 
 [] Dynamic picklist values and dependency
 
-## Find some bug or want help, please open a PR
+## Find some bug or want to help, please open a PR 🚩
+
+## Licença 📝
+
+This project is under license. Se the file [License](LICENSE) for more details.
+
+[⬆ Voltar ao topo](https://github.com/jhownfs/GlobalsearchLWC.git)<br>
