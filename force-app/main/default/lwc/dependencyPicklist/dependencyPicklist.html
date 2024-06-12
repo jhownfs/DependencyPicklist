@@ -48,8 +48,8 @@
   </div>
   <div slot="footer">
     <lightning-button-group>
-      <lightning-button label="Refresh" onclick={handleReset} variant="destructive" icon-name="utility:refresh"></lightning-button>
-      <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save"></lightning-button>
+      <lightning-button label="Refresh" onclick={handleReset} variant="destructive" icon-name="utility:refresh" disabled={isLoading}></lightning-button>
+      <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save" disabled={isLoading}></lightning-button>
     </lightning-button-group>
   </div>
 <template if:true={isLoading}>

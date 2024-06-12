@@ -1,6 +1,5 @@
 public with sharing class DependencyPicklistController {
 
-
  @AuraEnabled(cacheable=true)
  public static list<DependencyPicklist__mdt> getPicklistValues(){
 
@@ -11,7 +10,7 @@ public with sharing class DependencyPicklistController {
       lstDp = DependencyPicklistSelector.getDependecyPicklistAllValues();
    
     } catch (Exception e) {
-        throw new AuraHandledException(JSON.serialize(e.getMessage()));
+        throw new AuraHandledException(e.getMessage());
     }
 
     return lstDp;

@@ -50,28 +50,22 @@ export default class DependencyPicklist extends LightningElement {
           let listAux = [];
           let key = element.Recordtype__c;
 
-          listAux = this.mapRecordtypePicklist.get(key);
-          if(listAux === undefined){
-            listAux = [];
-          }
+          listAux = ( this.mapRecordtypePicklist.get(key)  === undefined) ? listAux = [] : this.mapRecordtypePicklist.get(key);
+          
           listAux.push({value: element.SubType__c, label: element.SubType__c});
           this.mapRecordtypePicklist.set(key, listAux);
 
           //level 2
-          key = element.Recordtype__c + '-'+ element.SubType__c;
-          listAux = this.mapSubtypePicklist.get(key);
-          if(listAux === undefined){
-            listAux = [];
-          }
+          key = element.Recordtype__c.concat('-',element.SubType__c);
+          listAux = ( this.mapSubtypePicklist.get(key)  === undefined) ? listAux = [] : this.mapSubtypePicklist.get(key);
+
           listAux.push({value: element.Tool__c, label: element.Tool__c});
           this.mapSubtypePicklist.set(key, listAux);
  
           //level 3  
-          key = element.Recordtype__c + '-'+ element.SubType__c + '-' + element.Tool__c;
-          listAux = this.mapToolPicklist.get(key);
-          if(listAux === undefined){
-            listAux = [];
-          }
+          key = element.Recordtype__c.concat( '-',element.SubType__c,'-',element.Tool__c);
+          listAux = ( this.mapToolPicklist.get(key)  === undefined) ? listAux = [] : this.mapToolPicklist.get(key);
+        
           listAux.push({value: element.Type__c, label: element.Type__c});
           this.mapToolPicklist.set(key, listAux);
 
@@ -82,7 +76,7 @@ export default class DependencyPicklist extends LightningElement {
         this.isLoading = false;
 
       } else if(error) {
-        console.log('error =', error);
+        this.showAlertToast('Error', error.body.message, 'error');
         this.isLoading = false;
       }
   }
