@@ -2,10 +2,18 @@ import { LightningElement, track, wire, api } from 'lwc';
 import getPicklistValues from '@salesforce/apex/DependencyPicklistController.getPicklistValues';
 import { updateRecord } from "lightning/uiRecordApi";
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+import headerComponentLabel from '@salesforce/label/c.Dependency_Picklist_Component';
+import saveLabel from '@salesforce/label/c.Save';
+import resetLabel from '@salesforce/label/c.Reset';
 
 export default class DependencyPicklist extends LightningElement {
 
   @api recordId;
+  labels = {
+    headerComponentLabel,
+    saveLabel,
+    resetLabel
+  };
 
   recordtypeValueSelected = '';
   subtypeValueSelected = '';
@@ -95,7 +103,7 @@ export default class DependencyPicklist extends LightningElement {
   }
 
   handleSubTypeChange(event){
-    let key = this.recordtypeValueSelected + '-'+ event.detail.value;
+    let key = this.recordtypeValueSelected.concat('-', event.detail.value);
     this.subtypeValueSelected = event.detail.value;
     this.toolPicklistValueSelected = this.clearField();
     
@@ -106,7 +114,7 @@ export default class DependencyPicklist extends LightningElement {
   }
 
   handleToolChange(event){
-    let key = this.recordtypeValueSelected + '-'+ this.subtypeValueSelected + '-'+ event.detail.value;
+    let key = this.recordtypeValueSelected.concat('-',this.subtypeValueSelected,'-',event.detail.value);
     this.toolPicklistValueSelected = event.detail.value;
 
     let listAux = this.mapToolPicklist.get(key);
@@ -179,9 +187,7 @@ export default class DependencyPicklist extends LightningElement {
       variant: type
 
     });
-
     this.dispatchEvent(event);
-
   }
 
   ValidateFields(){

@@ -2,7 +2,7 @@
  <lightning-card>
   <h3 slot="title">
     <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
-    Dependency Picklist Component
+    {labels.headerComponentLabel}
   </h3>
   <div class="slds-grid slds-grid_vertical container">
     <template if:false={isLoading}>
@@ -48,8 +48,8 @@
   </div>
   <div slot="footer">
     <lightning-button-group>
-      <lightning-button label="Refresh" onclick={handleReset} variant="destructive" icon-name="utility:refresh" disabled={isLoading}></lightning-button>
-      <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save" disabled={isLoading}></lightning-button>
+      <lightning-button label={labels.resetLabel} onclick={resetFields} variant="destructive" icon-name="utility:refresh" disabled={isLoading}></lightning-button>
+      <lightning-button label={labels.saveLabel} onclick={handleSave} variant="brand" icon-name="utility:save" disabled={isLoading}></lightning-button>
     </lightning-button-group>
   </div>
 <template if:true={isLoading}>
