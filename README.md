@@ -38,13 +38,26 @@ Sometimes we need to customize standard dependency picklist Salesforce to use cu
 
 You can modify and adjust according to your needs.
 
+
+## HOW THIS COMPONENT WORKS
+
+You can use this component inside any object, but it's important this object has field that contain the same name, to insert values selected.
+![alt text](image.png)
+
+Component reads informations about dependency picklist from Custom metadata that has the same name.
+![alt text](image-1.png)
+
+Labels inside component come from Custom Labels Salesforce.
+![alt text](image-2.png)
+
+
 ## Next Updates 🚀
 
-[] Add prints in readME to explain more about component works
+[x] Add prints in readME to explain more about component works
 
 [] Apply Some Design patterns to standardized to back and front (We have code smells here)
 
-[] Dynamic picklist values and dependency
+[] Dynamic picklist values and dependency (Consider another object structure)
 
 ## Find some bug or want to help, please open a PR 🚩
 
