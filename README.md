@@ -5,32 +5,10 @@ This component can be used to do a Dependency Picklist from custom metadata.
 
 ## 💻 How I to use?
 
-If you can you this component, clone this repository and push using SFDX to your org, follow instructions:
-
-1. Clone this repository:
-
-```
-git clone https://github.com/jhownfs/DependencyPicklist.git
-cd DependencyPicklist
-```
-
-2. Authorize with your org and provide it with an alias (OrgAlias):
-
-```
-sfdx force:auth:web:login -a "OrgAlias"
-```
-
-3. Push the app to your org:
-
-```
-sfdx force:source:deploy --sourcepath force-app/main/default --json --loglevel fatal --targetusername "OrgAlias"
-```
-
-4. Open the default org:
-
-```
-sfdx force:org:open --targetusername "OrgAlias"
-```
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
 
 ## USE CASE
 
