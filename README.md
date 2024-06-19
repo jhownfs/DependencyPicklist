@@ -1,6 +1,5 @@
 # Dependency Picklist ![image](https://img.shields.io/badge/Salesforce-00A1E0?style=for-the-badge&logo=Salesforce&logoColor=white)
 
-
 This component can be used to do a Dependency Picklist from custom metadata.
 
 ## 💻 How I to use?
@@ -20,12 +19,15 @@ You can modify and adjust according to your needs.
 ## HOW THIS COMPONENT WORKS
 
 You can use this component inside any object, but it's important this object has field that contain the same name, to insert values selected.
+
 ![alt text](image.png)
 
 Component reads informations about dependency picklist from Custom metadata that has the same name.
+
 ![alt text](image-1.png)
 
 Labels inside component come from Custom Labels Salesforce.
+
 ![alt text](image-2.png)
 
 

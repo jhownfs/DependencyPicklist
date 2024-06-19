@@ -5,6 +5,10 @@ import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import headerComponentLabel from '@salesforce/label/c.DPC_header';
 import saveLabel from '@salesforce/label/c.DPC_BTNSave';
 import resetLabel from '@salesforce/label/c.DPC_BTNReset';
+import recordtypeLabel from '@salesforce/label/c.DPC_LabelRecordtype';
+import subtypeLabel from '@salesforce/label/c.DPC_LabelSubType';
+import toolLabel from '@salesforce/label/c.DPC_LabelTool';
+import typeLabel from '@salesforce/label/c.DPC_LabelType';
 
 export default class DependencyPicklist extends LightningElement {
 
@@ -12,7 +16,11 @@ export default class DependencyPicklist extends LightningElement {
   labels = {
     headerComponentLabel,
     saveLabel,
-    resetLabel
+    resetLabel,
+    recordtypeLabel,
+    subtypeLabel,
+    toolLabel,
+    typeLabel
   };
 
   recordtypeValueSelected = '';

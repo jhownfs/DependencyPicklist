@@ -9,7 +9,7 @@
     <div class="slds-col slds-size_10-of-12">
       <lightning-combobox
       name="Recordtype"
-      label="Recordtype"
+      label={labels.recordtypeLabel}
       placeholder="Selecione o Recordtype"
       options={recordtypePicklist}
       onchange={handleRecordTypeChange}
@@ -18,7 +18,7 @@
     <div class="slds-col slds-size_10-of-12">
       <lightning-combobox
       name="SubType"
-      label="SubType"
+      label={labels.subtypeLabel}
       placeholder="Selecione o Subtype"
       options={subtypePicklist}
       onchange={handleSubTypeChange}
@@ -28,7 +28,7 @@
     <div class="slds-col slds-size_10-of-12">
       <lightning-combobox
       name="Tool"
-      label="Tool"
+      label={labels.toolLabel}
       placeholder="Selecione a Tool"
       options={toolPicklist}
       disabled={toolDisabled}
@@ -38,7 +38,7 @@
     <div class="slds-col slds-size_10-of-12">
       <lightning-combobox
       name="Type"
-      label="Type"
+      label={labels.typeLabel}
       placeholder="Selecione o Type"
       options={typePicklist}
       disabled={typeDisabled}

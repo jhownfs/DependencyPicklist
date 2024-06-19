@@ -3,6 +3,10 @@
 	<types>
 		<members>DPC_BTNReset</members>
 		<members>DPC_BTNSave</members>
+		<members>DPC_LabelRecordtype</members>
+		<members>DPC_LabelSubType</members>
+		<members>DPC_LabelTool</members>
+		<members>DPC_LabelType</members>
 		<members>DPC_header</members>
 		<name>CustomLabel</name>
 	</types>

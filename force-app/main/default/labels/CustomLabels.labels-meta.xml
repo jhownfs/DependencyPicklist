@@ -24,6 +24,38 @@
         <value>Save</value>
     </labels>
     <labels>
+        <fullName>DPC_LabelRecordtype</fullName>
+        <categories>Dependency picklist component</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DPC_LabelRecordtype</shortDescription>
+        <value>Recordtype</value>
+    </labels>
+    <labels>
+        <fullName>DPC_LabelSubType</fullName>
+        <categories>Dependency picklist component</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DPC_LabelSubType</shortDescription>
+        <value>SubType</value>
+    </labels>
+    <labels>
+        <fullName>DPC_LabelTool</fullName>
+        <categories>Dependency picklist component</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DPC_LabelTool</shortDescription>
+        <value>Tool</value>
+    </labels>
+    <labels>
+        <fullName>DPC_LabelType</fullName>
+        <categories>Dependency picklist component</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DPC_LabelType</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
         <fullName>DPC_header</fullName>
         <categories>Dependency picklist component</categories>
         <language>pt_BR</language>
