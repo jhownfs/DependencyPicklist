@@ -20,15 +20,15 @@ You can modify and adjust according to your needs.
 
 You can use this component inside any object, but it's important this object has field that contain the same name, to insert values selected.
 
-![alt text](image.png)
+![alt text](/images/component.png)
 
 Component reads informations about dependency picklist from Custom metadata that has the same name.
 
-![alt text](image-1.png)
+![alt text](/images/customMetadata.png)
 
 Labels inside component come from Custom Labels Salesforce.
 
-![alt text](image-2.png)
+![alt text](/images/customLabels.png)
 
 
 ## Next Updates 🚀
