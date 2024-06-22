@@ -13,6 +13,7 @@ import typeLabel from '@salesforce/label/c.DPC_LabelType';
 export default class DependencyPicklist extends LightningElement {
 
   @api recordId;
+
   labels = {
     headerComponentLabel,
     saveLabel,
@@ -45,11 +46,10 @@ export default class DependencyPicklist extends LightningElement {
     this.subtypeDisabled = true;
     this.toolDisabled = true;
     this.typeDisabled = true;
-    this.isLoading = true;
+    this.enableLoading();
   }
 
   removeDuplicates(data){
-
     return data.filter((element, index, self) => 
       index === self.findIndex((v) => v.value === element.value)
       );
@@ -89,11 +89,12 @@ export default class DependencyPicklist extends LightningElement {
         });
 
         this.recordtypePicklist = this.removeDuplicates(RecordtypeAux);
-        this.isLoading = false;
+        this.disableLoading();
 
       } else if(error) {
         this.showAlertToast('Error', error.body.message, 'error');
-        this.isLoading = false;
+        this.disableLoading();
+
       }
   }
   
@@ -137,12 +138,12 @@ export default class DependencyPicklist extends LightningElement {
 
   handleSave(event){
     event.preventDefault();
-    this.isLoading = true;
+    
     let validate = this.ValidateFields();
 
     if(validate){
-      this.showAlertToast('Empty Field', 'Please fill all the required fields', 'warning')
-      this.isLoading = false;
+      this.showAlertToast('Empty Field', 'Please fill all the required fields', 'warning');
+      this.disableLoading();
       return;
     }    
 
@@ -159,11 +160,11 @@ export default class DependencyPicklist extends LightningElement {
     updateRecord(picklistValues)
     .then(() => {
       this.showAlertToast('Record Update', 'Record has been updated!', 'success');
-      this.isLoading = false;
+      this.disableLoading();
     }).catch((error) => {
       console.log('error = '+ error);
       this.showAlertToast('Error', JSON.stringify(error), 'error');
-      this.isLoading = false;
+      this.disableLoading();
     });
   }
 
@@ -200,5 +201,21 @@ export default class DependencyPicklist extends LightningElement {
 
   ValidateFields(){
     return (this.recordtypeValueSelected === '' || this.subtypeValueSelected === '' || this.toolPicklistValueSelected === '' || this.typePicklistValueSelected === '');
+  }
+
+  enableLoading(){
+    this.isLoading = true;
+  }
+
+  disableLoading(){
+    this.isLoading = false;
+  }
+
+  isToolDisabled(value){
+    return value;
+  }
+
+  isTypeDisabled(value){
+    return value;
   }
 }
