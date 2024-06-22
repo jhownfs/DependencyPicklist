@@ -46,7 +46,7 @@ export default class DependencyPicklist extends LightningElement {
     this.subtypeDisabled = true;
     this.toolDisabled = true;
     this.typeDisabled = true;
-    this.enableLoading();
+    this.isEnableLoading(true);
   }
 
   removeDuplicates(data){
@@ -89,12 +89,10 @@ export default class DependencyPicklist extends LightningElement {
         });
 
         this.recordtypePicklist = this.removeDuplicates(RecordtypeAux);
-        this.disableLoading();
-
+        this.isEnableLoading(false);
       } else if(error) {
         this.showAlertToast('Error', error.body.message, 'error');
-        this.disableLoading();
-
+        this.isEnableLoading(false);
       }
   }
   
@@ -118,8 +116,8 @@ export default class DependencyPicklist extends LightningElement {
     
     let listAux = this.mapSubtypePicklist.get(key);
     this.toolPicklist = this.removeDuplicates(listAux);
-    this.toolDisabled = false;
-    this.typeDisabled = true;
+    this.isToolDisabled(false);
+    this.isTypeDisabled(true);
   }
 
   handleToolChange(event){
@@ -129,7 +127,7 @@ export default class DependencyPicklist extends LightningElement {
     let listAux = this.mapToolPicklist.get(key);
     this.typePicklistValueSelected = this.clearField();
     this.typePicklist = this.removeDuplicates(listAux);
-    this.typeDisabled = false;
+    this.isTypeDisabled(false);
   }
 
   handleTypeChange(event){
@@ -138,12 +136,13 @@ export default class DependencyPicklist extends LightningElement {
 
   handleSave(event){
     event.preventDefault();
+    this.isEnableLoading(true);
     
     let validate = this.ValidateFields();
 
     if(validate){
       this.showAlertToast('Empty Field', 'Please fill all the required fields', 'warning');
-      this.disableLoading();
+      this.isEnableLoading(false);
       return;
     }    
 
@@ -160,11 +159,11 @@ export default class DependencyPicklist extends LightningElement {
     updateRecord(picklistValues)
     .then(() => {
       this.showAlertToast('Record Update', 'Record has been updated!', 'success');
-      this.disableLoading();
+      this.isEnableLoading(false);
     }).catch((error) => {
       console.log('error = '+ error);
       this.showAlertToast('Error', JSON.stringify(error), 'error');
-      this.disableLoading();
+      this.isEnableLoading(false);
     });
   }
 
@@ -173,9 +172,9 @@ export default class DependencyPicklist extends LightningElement {
   }
 
   resetFields(){
-    this.subtypePicklist = [];
-    this.toolPicklist = [];
-    this.typePicklist = [];
+    this.subtypePicklist.length = 0;
+    this.toolPicklist.length = 0;
+    this.typePicklist.length = 0;
     this.recordtypeValueSelected = '';
     this.subtypeValueSelected = '';
     this.toolPicklistValueSelected = '';
@@ -184,8 +183,8 @@ export default class DependencyPicklist extends LightningElement {
   }
 
   disableToolAndType(){
-    this.toolDisabled = true;
-    this.typeDisabled = true;
+    this.isToolDisabled(true);
+    this.isTypeDisabled(true);
   }
 
   showAlertToast(title, message, type){
@@ -203,19 +202,15 @@ export default class DependencyPicklist extends LightningElement {
     return (this.recordtypeValueSelected === '' || this.subtypeValueSelected === '' || this.toolPicklistValueSelected === '' || this.typePicklistValueSelected === '');
   }
 
-  enableLoading(){
-    this.isLoading = true;
-  }
-
-  disableLoading(){
-    this.isLoading = false;
+  isEnableLoading(value){
+    this.isLoading = value;
   }
 
   isToolDisabled(value){
-    return value;
+    this.toolDisabled = value;
   }
 
   isTypeDisabled(value){
-    return value;
+    this.typeDisabled = value;
   }
 }
