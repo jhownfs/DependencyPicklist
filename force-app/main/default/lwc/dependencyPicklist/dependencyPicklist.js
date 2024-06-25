@@ -1,4 +1,4 @@
-import { LightningElement, track, wire, api } from 'lwc';
+import { api, LightningElement, track, wire } from 'lwc';
 import getPicklistValues from '@salesforce/apex/DependencyPicklistController.getPicklistValues';
 import { updateRecord } from "lightning/uiRecordApi";
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
@@ -33,9 +33,9 @@ export default class DependencyPicklist extends LightningElement {
   mapSubtypePicklist = new Map();
   mapToolPicklist = new Map();
 
-  @track subtypeDisabled = false;
-  @track toolDisabled = false;
-  @track typeDisabled = false;
+  @track isSubtypeDisabled = false;
+  @track isToolDisabled = false;
+  @track isTypeDisabled = false;
   @track recordtypePicklist = [];
   @track subtypePicklist = [];
   @track toolPicklist = [];
@@ -43,10 +43,10 @@ export default class DependencyPicklist extends LightningElement {
   @track isLoading = false;
 
   connectedCallback(){
-    this.subtypeDisabled = true;
-    this.toolDisabled = true;
-    this.typeDisabled = true;
-    this.isEnableLoading(true);
+    this.subtypeDisabled();
+    this.toolDisabled();
+    this.typeDisabled();
+    this.enableLoading();
   }
 
   removeDuplicates(data){
@@ -89,10 +89,10 @@ export default class DependencyPicklist extends LightningElement {
         });
 
         this.recordtypePicklist = this.removeDuplicates(RecordtypeAux);
-        this.isEnableLoading(false);
+        this.disabledLoading();
       } else if(error) {
         this.showAlertToast('Error', error.body.message, 'error');
-        this.isEnableLoading(false);
+        this.disabledLoading();
       }
   }
   
@@ -104,9 +104,9 @@ export default class DependencyPicklist extends LightningElement {
     this.toolPicklist = [];
     this.typePicklist = [];
     this.subtypeValueSelected = this.clearField();
-    this.subtypeDisabled = false;
-    this.toolDisabled = true;
-    this.typeDisabled = true;
+    this.subtypeEnabled();
+    this.toolDisabled();
+    this.typeDisabled();
   }
 
   handleSubTypeChange(event){
@@ -116,8 +116,8 @@ export default class DependencyPicklist extends LightningElement {
     
     let listAux = this.mapSubtypePicklist.get(key);
     this.toolPicklist = this.removeDuplicates(listAux);
-    this.isToolDisabled(false);
-    this.isTypeDisabled(true);
+    this.toolDisabled();
+    this.typeDisabled();
   }
 
   handleToolChange(event){
@@ -127,7 +127,7 @@ export default class DependencyPicklist extends LightningElement {
     let listAux = this.mapToolPicklist.get(key);
     this.typePicklistValueSelected = this.clearField();
     this.typePicklist = this.removeDuplicates(listAux);
-    this.isTypeDisabled(false);
+    this.typeDisabled();
   }
 
   handleTypeChange(event){
@@ -136,13 +136,13 @@ export default class DependencyPicklist extends LightningElement {
 
   handleSave(event){
     event.preventDefault();
-    this.isEnableLoading(true);
+    this.enableLoading();
     
     let validate = this.ValidateFields();
 
     if(validate){
       this.showAlertToast('Empty Field', 'Please fill all the required fields', 'warning');
-      this.isEnableLoading(false);
+      this.disabledLoading();
       return;
     }    
 
@@ -159,11 +159,11 @@ export default class DependencyPicklist extends LightningElement {
     updateRecord(picklistValues)
     .then(() => {
       this.showAlertToast('Record Update', 'Record has been updated!', 'success');
-      this.isEnableLoading(false);
+      this.disabledLoading();
     }).catch((error) => {
       console.log('error = '+ error);
       this.showAlertToast('Error', JSON.stringify(error), 'error');
-      this.isEnableLoading(false);
+      this.disabledLoading();
     });
   }
 
@@ -183,8 +183,8 @@ export default class DependencyPicklist extends LightningElement {
   }
 
   disableToolAndType(){
-    this.isToolDisabled(true);
-    this.isTypeDisabled(true);
+    this.toolDisabled();
+    this.typeDisabled();
   }
 
   showAlertToast(title, message, type){
@@ -198,19 +198,39 @@ export default class DependencyPicklist extends LightningElement {
     this.dispatchEvent(event);
   }
 
-  ValidateFields(){
+  validateFields(){
     return (this.recordtypeValueSelected === '' || this.subtypeValueSelected === '' || this.toolPicklistValueSelected === '' || this.typePicklistValueSelected === '');
   }
 
-  isEnableLoading(value){
-    this.isLoading = value;
+  enableLoading(){
+    this.isLoading = true;
   }
 
-  isToolDisabled(value){
-    this.toolDisabled = value;
+  disabledLoading(){
+    this.isLoading = false;
   }
 
-  isTypeDisabled(value){
-    this.typeDisabled = value;
+  toolEnabled(){
+    this.isToolDisabled = false;
+  }
+  
+  toolDisabled(){
+    this.isToolDisabled = true;
+  }
+
+  typeDisabled(){
+    this.isTypeDisabled = true;
+  }
+
+  typeEnabled(){
+    this.isTypeDisabled = false;
+  }
+
+  subtypeDisabled(){
+    this.isSubtypeDisabled = true;
+  }
+
+  subtypeEnabled(){
+    this.isSubtypeDisabled = false;
   }
 }
