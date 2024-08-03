@@ -41,8 +41,8 @@ Labels inside component come from Custom Labels Salesforce.
 
 ## Find some bug or want to help, please open a PR 🚩
 
-## Licença 📝
+## License 📝
 
 This project is under license. Se the file [License](LICENSE) for more details.
 
-[⬆ Voltar ao topo](https://github.com/jhownfs/GlobalsearchLWC.git)<br>
+[⬆ Back to top](https://github.com/jhownfs/GlobalsearchLWC.git)<br>
